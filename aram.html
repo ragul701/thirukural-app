@@ -1,121 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="ta">
 <head>
-    <title>Aram - Athigaram</title>
-
-    <style>
-
-        /* PAGE SETUP */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-
-            background: linear-gradient(120deg, #1FA2FF, #12D8FA, #A6FFCB);
-
-            min-height: 100vh;
-            overflow-y: auto;   /* ✅ scroll fix */
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* TITLE */
-        h1 {
-            font-size: 40px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        /* BUTTON STYLE (same as you wanted) */
-        button {
-            display: block;
-            margin: 10px auto;
-            padding: 10px 20px;
-            width: 250px;
-            font-size: 16px;
-            background-color: teal;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: darkcyan;
-        }
-
-        /* LIST CONTAINER spacing */
-        #list {
-            padding-bottom: 50px;
-        }
-
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>அறத்துப்பால் | Thirukkural</title>
+    <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="pal.css" />
+    <script src="auth.js"></script>
+    <script>requireLogin({ loginPage: "login.html" });</script>
 </head>
+<body class="pal-aram">
+    <div class="bg" aria-hidden="true">
+        <img
+            src="images/olaichuvadi.jpg"
+            alt=""
+            onerror="this.onerror=null;this.src='images/olai-chuvadi.jpg';"
+        />
+        <div class="bg-overlay"></div>
+    </div>
 
+    <div class="page-content">
+        <div class="pal-wrap">
+            <nav class="pal-tabs" aria-label="முப்பால்">
+                <a href="aram.html"><button type="button" class="tab-active">🌿 அறத்துப்பால்</button></a>
+                <a href="porul.html"><button type="button">💰 பொருட்பால்</button></a>
+                <a href="inbam.html"><button type="button">❤️ இன்பத்துப்பால்</button></a>
+            </nav>
 
-<h1>அறத்துப்பால் - அதிகாரங்கள்</h1>
+            <div id="athigaramList"><p class="loading">குறள்கள் ஏற்றுகிறது…</p></div>
+            <div id="kuralDisplay"></div>
+        </div>
+    </div>
 
-<div id="list"></div>
-
-<script>
-
-let aramAthigaram = [
-"1. கடவுள் வாழ்த்து",
-"2. வான்சிறப்பு",
-"3. நீத்தார் பெருமை",
-"4. அறன் வலியுறுத்தல்",
-"5. இல்வாழ்க்கை",
-"6. வாழ்க்கைத் துணைநலம்",
-"7. மக்கள்பேறு",
-"8. அன்புடைமை",
-"9. விருந்தோம்பல்",
-"10. இனியவை கூறல்",
-"11. செய்ந்நன்றியறிதல்",
-"12. நடுவுநிலைமை",
-"13. அடக்கமுடைமை",
-"14. ஒழுக்கமுடைமை",
-"15. பிறனில் விழையாமை",
-"16. பொறையுடைமை",
-"17. அழுக்காறாமை",
-"18. வெஃகாமை",
-"19. புறங்கூறாமை",
-"20. பயனில சொல்லாமை",
-"21. தீவினையச்சம்",
-"22. ஒப்புரவறிதல்",
-"23. ஈகை",
-"24. புகழ்",
-"25. அருளுடைமை",
-"26. புலால் மறுத்தல்",
-"27. தவம்",
-"28. கூடா ஒழுக்கம்",
-"29. கள்ளாமை",
-"30. வாய்மை",
-"31. வெகுளாமை",
-"32. இன்னாசெய்யாமை",
-"33. கொல்லாமை",
-"34. நிலையாமை",
-"35. துறவு",
-"36. மெய்யுணர்தல்",
-"37. அவாவறுத்தல்",
-"38. ஊழ்"
-];
-
-let container = document.getElementById("list");
-
-aramAthigaram.forEach(item => {
-    let btn = document.createElement("button");
-    btn.textContent = item;
-
-    btn.onclick = function() {
-        alert(item);
-    };
-
-    container.appendChild(btn);
-});
-
-</script>
-<script src="ragul.js"></script>
+    <script>window.ATHIGARAM_RANGE = { start: 1, end: 38 };</script>
+    <script src="ragul.js"></script>
+    <script src="nav.js"></script>
 </body>
 </html>

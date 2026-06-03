@@ -1,107 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="ta">
 <head>
-    <title>Inbam - Athigaram</title>
-
-    <style>
-        body {
-            font-family: Arial;
-            text-align: center;
-            background: #fff0f5;
-        }
-
-        h1 {
-            color: #c0392b;
-        }
-        h2{
-            font-size: 40px;
-        }
-
-        button {
-            display: block;
-            margin: 10px auto;
-            padding: 12px 20px;
-            width: 300px;
-            font-size: 16px;
-            background-color: #c0392b;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #e74c3c;
-        }
-        body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-
-    background: linear-gradient(-45deg, #ff6a00, #ee0979, #00c6ff, #0072ff);
-    background-size: 400% 400%;
-    animation: gradientBG 8s ease infinite;
-
-    min-height: 100vh;
-}
-
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>இன்பத்துப்பால் | Thirukkural</title>
+    <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="pal.css" />
+    <script src="auth.js"></script>
+    <script>requireLogin({ loginPage: "login.html" });</script>
 </head>
-<body>
-<h2 style="color: black;">இன்பத்துப்பால் - அதிகாரங்கள்</h2>
+<body class="pal-inbam">
+    <div class="bg" aria-hidden="true">
+        <img
+            src="images/olaichuvadi.jpg"
+            alt=""
+            onerror="this.onerror=null;this.src='images/olai-chuvadi.jpg';"
+        />
+        <div class="bg-overlay"></div>
+    </div>
 
-<div id="list"></div>
+    <div class="page-content">
+        <div class="pal-wrap">
+            <nav class="pal-tabs" aria-label="முப்பால்">
+                <a href="aram.html"><button type="button">🌿 அறத்துப்பால்</button></a>
+                <a href="porul.html"><button type="button">💰 பொருட்பால்</button></a>
+                <a href="inbam.html"><button type="button" class="tab-active">❤️ இன்பத்துப்பால்</button></a>
+            </nav>
 
-<script>
+            <div id="athigaramList"><p class="loading">குறள்கள் ஏற்றுகிறது…</p></div>
+            <div id="kuralDisplay"></div>
+        </div>
+    </div>
 
-let inbamAthigaram = [
-"109. தகையணங்குறுத்தல்",
-"110. குறிப்பறிதல்",
-"111. புணர்ச்சி மகிழ்தல்",
-"112. நலம் புனைந்துரைத்தல்",
-"113. காதற் சிறப்புரைத்தல்",
-"114. நாணுத் துறவுரைத்தல்",
-"115. அலர் அறிவுறுத்தல்",
-"116. பிரிவாற்றாமை",
-"117. படர்மெலிந்திரங்கல்",
-"118. கண்விதுப்பழிதல்",
-"119. பசப்புறு பருவரல்",
-"120. தனிப்படர் மிகுதி",
-"121. நினைந்தவர் புலம்பல்",
-"122. கனவுநிலை உரைத்தல்",
-"123. பொழுதுகண்டு இரங்கல்",
-"124. உறுப்புநலன் அழிதல்",
-"125. நெஞ்சொடு கிளத்தல்",
-"126. நிறையழிதல்",
-"127. அவர்வயின் விதும்பல்",
-"128. குறிப்பறிவுறுத்தல்",
-"129. புணர்ச்சி விதும்பல்",
-"130. நெஞ்சொடு புலத்தல்",
-"131. புலவி",
-"132. புலவி நுணுக்கம்",
-"133. ஊடல்"
-];
-
-let container = document.getElementById("list");
-
-inbamAthigaram.forEach(item => {
-    let btn = document.createElement("button");
-    btn.textContent = item;
-
-    btn.onclick = function () {
-        alert(item);
-    };
-
-    container.appendChild(btn);
-});
-
-</script>
-
+    <script>window.ATHIGARAM_RANGE = { start: 109, end: 133 };</script>
+    <script src="ragul.js"></script>
+    <script src="nav.js"></script>
 </body>
 </html>
