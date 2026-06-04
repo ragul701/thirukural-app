@@ -1,155 +1,118 @@
 <!DOCTYPE html>
 <html lang="ta">
 <head>
-<meta charset="UTF-8">
-<title>Thiruvalluvar About</title>
-<link rel="stylesheet" href="nav.css" />
-
-<style>
-
-body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background: linear-gradient(135deg,#141e30,#243b55);
-    font-family: sans-serif;
-}
-
-/* main card */
-.card{
-    width:380px;
-    height:520px;
-    border-radius:20px;
-    background: linear-gradient(145deg,#ffffff,#e9ecef);
-    box-shadow:0 15px 30px rgba(0,0,0,0.4);
-    overflow:hidden;
-}
-
-/* header */
-.header{
-    padding:15px;
-    text-align:center;
-    font-size:22px;
-    font-weight:bold;
-    color:white;
-    background: linear-gradient(90deg,#ff512f,#dd2476,#ff8a00);
-}
-
-/* scroll area */
-.scroll{
-    height:460px;
-    overflow-y:auto;
-    padding:15px;
-}
-
-/* scrollbar */
-.scroll::-webkit-scrollbar{
-    width:6px;
-}
-
-.scroll::-webkit-scrollbar-thumb{
-    background: linear-gradient(#ff512f,#dd2476);
-    border-radius:10px;
-}
-
-/* text styles */
-h3{
-    color:#d81b60;
-}
-
-p{
-    font-size:15px;
-    line-height:1.7;
-    color:#333;
-}
-
-.highlight{
-    font-weight:bold;
-    color:#ff1744;
-}
-
-/* quote box */
-.quote{
-    margin-top:10px;
-    padding:10px;
-    background: linear-gradient(135deg,#fff3e0,#ffe0b2);
-    border-left:5px solid #ff9800;
-    border-radius:10px;
-    font-style:italic;
-}
-
-</style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>திருவள்ளுவர் – About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-dark: #141e30;
+      --bg-gradient: #243b55;
+      --card-bg: rgba(255, 255, 255, 0.12);
+      --card-blur: 12px;
+      --primary: #ff512f;
+      --secondary: #dd2476;
+      --accent: #ff9800;
+      --text-primary: #e0e0e0;
+      --text-secondary: #c0c0c0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--bg-dark), var(--bg-gradient));
+      color: var(--text-primary);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem;
+    }
+    .card {}
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+    .header {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .content {
+      padding: 1.5rem;
+      line-height: 1.7;
+    }
+    h3 {
+      margin-top: 1rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    p {
+      margin-top: 0.5rem;
+      color: var(--text-secondary);
+    }
+    .highlight { font-weight: 700; color: var(--secondary); }
+    .quote {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      border-left: 5px solid var(--accent);
+      border-radius: 0.5rem;
+      font-style: italic;
+      color: #4e342e;
+    }
+        .scroll {
+      max-height: 70vh;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+    @media (max-width: 600px) {
+      .scroll { max-height: 60vh; }
+      .header { font-size: 1.2rem; }
+      .content { padding: 1rem; }
+    }
+  </style>
 </head>
-
 <body>
-
-<div class="card">
-
-<div class="header">
-ஆசிரியர் குறிப்பு – திருவள்ளுவர்
-</div>
-
-<div class="scroll">
-
-<h3>📘 அறிமுகம்</h3>
-<p>
- தமிழின் மிகப்பெரிய புலவரும் உலகப் புகழ்பெற்ற தத்துவஞானியும் ஆவார்.
-இவர் எழுதிய <span class="highlight">திருக்குறள்</span> உலகின் மிகச்சிறந்த நெறி நூலாக கருதப்படுகிறது.
-</p>
-
-<h3>📚 திருக்குறள் பற்றி</h3>
-<p>
-திருக்குறள் மொத்தம் <span class="highlight">1330 குறள்கள்</span> கொண்டது.
-இது மனித வாழ்க்கைக்கான முழுமையான வழிகாட்டி நூல்.
-</p>
-
-<p>
-மூன்று முக்கியப் பிரிவுகள்:
-<br>✔ அறத்துப்பால் – ஒழுக்கம் மற்றும் நெறி
-<br>✔ பொருட்பால் – அரசியல், பொருளாதாரம், வாழ்க்கை நடைமுறை
-<br>✔ இன்பத்துப்பால் – காதல் மற்றும் மனித உணர்வுகள்
-</p>
-
-<h3>🌿 வாழ்க்கை தத்துவம்</h3>
-<p>
-திருவள்ளுவர் மனித வாழ்க்கை எப்படி நெறியுடன் இருக்க வேண்டும் என்பதை மிக எளிமையாகவும் ஆழமாகவும் கூறியுள்ளார்.
-</p>
-
-<p>
-அவரது கருத்துகள் அனைத்து மதங்களுக்கும், நாடுகளுக்கும் பொருந்தும் வகையில் உள்ளன.
-</p>
-
-<h3>🌍 உலகப் புகழ்</h3>
-<p>
-திருக்குறள் பல மொழிகளில் மொழிபெயர்க்கப்பட்டுள்ளது.
-உலகம் முழுவதும் அறம், ஒழுக்கம் கற்பிக்கும் நூலாக போற்றப்படுகிறது.
-</p>
-
-<h3>✨ சிறப்பு அம்சங்கள்</h3>
-<p>
-✔ சாதி, மதம் கடந்து மனிதநேயம் பேசுகிறது<br>
-✔ அரசியல் + காதல் + ஒழுக்கம் அனைத்தையும் உள்ளடக்கியது<br>
-✔ குறுகிய ஆனால் ஆழமான கருத்துகள்
-</p>
-
-<div class="quote">
-“அகர முதல எழுத்தெல்லாம் ஆதி பகவன் முதற்றே உலகு”
-</div>
-
+  <div class="card">
+    <div class="header">ஆசிரியர் குறிப்பு – திருவள்ளுவர்</div>
+    <div>
+      <div class="content">
+        <h3>📘 அறிமுகம்</h3>
+        <p>தமிழின் புகழ்பெற்ற புலவர், தத்துவஞானி திருவள்ளுவர், <span class="highlight">திருக்குறள்</span> எனப்படும் உலகப் புகழ்பெற்ற நெறி நூலை எழுதி, நெறியியல், இராஜநெறி, இன்பநெறி ஆகிய 1330 குறள்களால் மனித வாழ்க்கையின் முழுமையான வழிகாட்டியாக அமைத்தார்.</p>
+        
+        <h3>📚 திருக்குறள் பற்றி</h3>
+        <p>திருக்குறள் மூன்று பகுதிகளாக – <span class="highlight">அறத்துப்பால்</span> (நெறி), <span class="highlight">பொருட்பால்</span> (இராஜநெறி) மற்றும் <span class="highlight">இன்பத்துப்பால்</span> (இன்பநெறி) – ஒழுங்குபடுத்தப்பட்டு, ஒவ்வொரு பகுதியும் பல்வேறு வாழ்க்கை சூழல்களை நிர்வகிக்கும் வழிகளை வழங்குகிறது.</p>
+        
+        <h3>🌿 வாழ்க்கை தத்துவம்</h3>
+        <p>திருவள்ளுவர் ஒவ்வொரு மனிதரும் நேர்மையுடன், அறத்துடன், சமநிலையுடன் வாழ வேண்டும் என்பதை எளிதும் ஆழமும் உள்ள மொழியில் விளக்கியுள்ளார்.</p>
+        
+        <h3>🌍 உலகப் புகழ்</h3>
+        <p>திருக்குறள் பல மொழிகளில் மொழிபெயர்க்கப்பட்டு, உலகின் பல கலாச்சாரங்களில் நெறியையும் தர்மத்தையும் கற்பிக்கும் சிறந்த நூலாகப் பயின்று வருகிறது.</p>
+        
+        <h3>✨ சிறப்பு அம்சங்கள்</h3>
+        <p>✔ அனைத்து மதங்களுக்கும், நாடுகளுக்கும் பொருந்தும் மனித நேயம்<br>
+           ✔ அரசியல், காதல், நெறி அனைத்தையும் ஒருங்கிணைப்பு<br>
+           ✔ குறுகிய ஆனால் ஆழமான கருத்துகள்</p>
+        
+        <div class="quote">“அகர முதல எழுத்தெல்லாம் ஆதி பகவன் முதற்றே உலகு”</div>
+        
+        <h3>📚 வள்ளுவர் வாழ்க்கை வரலாறு</h3>
+<p>திருவள்ளுவர் 2ஆம் நூற்றாண்டில் தமிழ்நாட்டின் மூவக்குடித்தனம் (இன்றைய புவனத்துறை) பகுதியில் பிறந்தார். தனது வாழ்நாளில் பல கவிதை, உரை, மற்றும் தத்துவப் பணிகளை எழுத்து மூலம் இலகுவாக ஆழமான தத்துவங்களை பரப்பினார். அவர் ஆவலுடன் வணிகம், அரசியல், காதல், நெறி ஆகிய துறைகளில் மாபெரும் அறிவை வழங்கினார்; இதனால் அவரது <em>திருக்குறள்</em> உலகம் முழுவதும் 100-க்கும் மேற்பட்ட மொழிகளில் மொழிபெயர்க்கப்பட்டது. அவரது வாழ்க்கை வரலாறு பற்றிய துல்லியமான வரலாற்று ஆதாரங்கள் வரையறுக்கப்பட்டுள்ளன, ஆனால் பல சாதாரணக் கதைகள் மற்றும் சான்றுகள் அவரை ஒரு பெரும் அறிஞராகக் காட்டுகின்றன.</p>
+<p>திருவள்ளுவர் தனது வாழ்க்கை காலத்தைத் தாண்டியும், வேதமொழி, சங்கத் தமிழில் உள்ள ஒளியைக் கொண்டு பல தத்துவ நூல்களை உருவாக்கினார். அவரது <strong>திருக்குறள்</strong> பல அரசர்கள், சமயங்கள் மற்றும் மொழிகளின் இரக்கத்தை பிரதிபலித்தது; இது 20‑ம் நூற்றாண்டுக்கும் மேலாக உலகளவில் 100‑க்கும் மேற்பட்ட மொழிகளுக்கே மொழிபெயர்க்கப்பட்டது. அவரது எழுத்துகள் பின்வரும் மூன்று பகுதிகளாகப் பிரிக்கப்படுகின்றன:</p>
+<ul>
+  <li><strong>அறத்துப்பால்</strong> – நெறி, அறம், மனிதன் எப்படி வாழ வேண்டும் என்பதைக் குறிப்பது.</li>
+  <li><strong>பொருட்பால்</strong> – அரசாண்மை, பொருளாதாரம், சமூக ஒழுங்கு உள்ளிட்டவை.</li>
+  <li><strong>இன்பப்பால்</strong> – காதல், இன்பம், மனித உணர்வுகள் பற்றிய போதனைகள்.</li>
+</ul>
+<p>இன்று, திருவள்ளுவரின் சிந்தனைப் பக்கங்கள் பல கல்வி நிறுவனங்களில், பள்ளிகளில், மற்றும் ஆன்லைன் பாடங்களில் அடிப்படையாக பயன்படுத்தப்படுகின்றன; அவரின் பிலாஞ்சை, பொது விழாக்களில் சித்திரக்காட்சிகள் மற்றும் ஓவியங்கள் மூலம் பரவலாகக் கொண்டாடப்படுகிறது.</p>
 <h3>📌 முடிவு</h3>
-<p>
-உலக மக்களுக்கு ஒழுக்கம், அறம் மற்றும்
- உயர்ந்த வாழ்க்கை நெறிகளை கற்பிக்கிறது.”
-</p>
-</p>
-
-</div>
-
-</div>
-
-<script src="nav.js"></script>
+        <p>திருவள்ளுவர் உலக மக்களுக்கு ஒழுக்கம், அறம் மற்றும் உயர்ந்த வாழ்க்கை நெறிகளை கற்பித்து, மனிதநேயத்தின் அலகை உயர்த்தியவர்.</p>
+      </div>
+    </div>
+  </div>
+  <script src="nav.js"></script>
 </body>
 </html>
