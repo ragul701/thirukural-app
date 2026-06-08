@@ -117,11 +117,109 @@ button:hover {
     margin-right: clamp(24px, 6vw, 80px);
   }
 }
+  /* Header styling */
+  .app-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(10, 15, 28, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .app-title {
+    margin: 0;
+    font-size: clamp(24px, 5vw, 32px);
+    color: #ffd56b;
+    font-family: "Playfair Display", "Noto Sans Tamil", serif;
+  }
+  .search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+  }
+  .search-wrapper input {
+    width: 100%;
+    padding: 10px 40px 10px 14px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 16px;
+  }
+  .search-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .search-wrapper button {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #ffd56b;
+  }
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .header-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      color: #ffd56b;
+      padding: 4px;
+    }
+    .header-actions button:hover {
+      transform: translateY(-2px);
+    }
+    .header-actions button:focus {
+      outline: 2px solid #ffd56b;
+    }
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    font-size: 14px;
+  }
+  .toast.show { opacity: 1; }
+  .kural-highlight {
+    animation: highlight 3s ease-out;
+  }
+  @keyframes highlight {
+    0% { box-shadow: 0 0 0 4px rgba(255, 213, 107, 0.7); }
+    100% { box-shadow: none; }
+  }
 </style>
 
 </head>
 
 <body>
+  <header class="app-header">
+    <h1 class="app-title">Thiruvalluvar App</h1>
+    <div class="search-wrapper">
+      <input type="number" id="searchInput" placeholder="Search Kural Number (1 - 1330)" min="1" max="1330" />
+      <button id="searchBtn" aria-label="Search"><span class="search-icon">🔍</span></button>
+    </div>
+    <div class="header-actions">
+      <button id="likeBtn" aria-label="Like"><span class="icon">❤️</span></button>
+      <button id="profileBtn" aria-label="Profile"><span class="icon">👤</span></button>
+      <button id="favBtn" aria-label="Favourite"><span class="icon">⭐</span></button>
+    </div>
+  </header>
 
 <div class="bg" aria-hidden="true">
   <img
@@ -145,5 +243,49 @@ button:hover {
 </div>
 
 <script src="nav.js"></script>
+  <div id="toast" class="toast"></div>
+  <script>
+    // Header button handlers (placeholder)
+    const likeBtn = document.getElementById('likeBtn');
+    const profileBtn = document.getElementById('profileBtn');
+    const favBtn = document.getElementById('favBtn');
+
+    likeBtn.addEventListener('click', () => alert('Liked!'));
+    profileBtn.addEventListener('click', () => alert('Profile clicked!'));
+    favBtn.addEventListener('click', () => alert('Added to favourites!'));
+    
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const toast = document.getElementById('toast');
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    function highlightKural(num) {
+      const target = document.getElementById(`kural-${num}`) || document.querySelector(`[data-kural='${num}']`);
+      if (!target) return false;
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      target.classList.add('kural-highlight');
+      setTimeout(() => target.classList.remove('kural-highlight'), 3000);
+      return true;
+    }
+
+    function performSearch() {
+      const val = parseInt(searchInput.value, 10);
+      if (!val || val < 1 || val > 1330) {
+        showToast('Kural not found');
+        return;
+      }
+      if (!highlightKural(val)) {
+        showToast('Kural not found');
+      }
+    }
+
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') performSearch(); });
+  </script>
 </body>
 </html>
