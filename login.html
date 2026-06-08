@@ -14,7 +14,7 @@
 
   <style>
     *,
-    *::before,
+    *::before
     *::after {
       box-sizing: border-box;
     }
@@ -479,7 +479,7 @@
       const params = new URLSearchParams(location.search);
       const returnTo = params.get("returnTo");
       setTimeout(() => {
-        location.replace(returnTo ? decodeURIComponent(returnTo) : "index.html");
+        location.replace(returnTo ? decodeURIComponent(returnTo) : "user.html");
       }, 400);
     }
 

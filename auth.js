@@ -52,7 +52,6 @@ function redirectIfLoggedIn(options = {}) {
   if (isLoggedIn() && current.toLowerCase() === "login.html") {
     const params = new URLSearchParams(location.search);
     const returnTo = params.get("returnTo");
-    location.replace(returnTo ? decodeURIComponent(returnTo) : defaultTo);
+    location.replace(returnTo ? decodeURIComponent(returnTo) : "user.html");
   }
 }
-
