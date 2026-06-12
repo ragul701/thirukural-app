@@ -248,8 +248,13 @@ button:hover {
     const num = parseInt(k, 10);
     if (!num || num < 1 || num > 1330) { alert('செல்லுபடியாகாத எண்ணு'); return; }
     const list = JSON.parse(localStorage.getItem('favouriteKurals') || '[]');
-    if (!list.includes(num)) { list.push(num); localStorage.setItem('favouriteKurals', JSON.stringify(list)); alert('விருப்ப குறள் சேர்ப்பட்டது!'); }
-    else { alert('ஏற்கனவே சேர்க்கப்பட்டுள்ளது'); }
+    if (!list.includes(num)) { 
+      list.push(num); 
+      localStorage.setItem('favouriteKurals', JSON.stringify(list)); 
+      alert('விருப்ப குறள் சேர்ப்பட்டது!');
+    } else { 
+      alert('ஏற்கனவே சேர்க்கப்பட்டுள்ளது'); 
+    }
   });
 </script>
 
@@ -279,33 +284,9 @@ button:hover {
   <script>
     const profileBtn = document.getElementById('profileBtn');
     const favBtn = document.getElementById('favBtn');
-
     const toast = document.getElementById('toast');
-
-    // Search button now reads from the input field
     const searchExecute = document.getElementById('searchExecute');
     const searchInput = document.getElementById('searchInput');
-    function performSearchFromInput() {
-      if (!searchInput || !searchInput.value) {
-        showToast('குறள் எண்ணை உள்ளிடவும்');
-        return;
-      }
-      const val = parseInt(searchInput.value, 10);
-      if (!val || val < 1 || val > 1330) {
-        showToast('செல்லுபடியாகாத குறள் எண்');
-        return;
-      }
-      if (!highlightKural(val)) {
-        showToast('குறள் கிடைக்கவில்லை');
-      }
-    }
-    searchExecute.addEventListener('click', performSearchFromInput);
-    // Also allow Enter key on the input
-    if (searchInput) {
-      searchInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') performSearchFromInput();
-      });
-    }
 
     function showToast(msg) {
       toast.textContent = msg;
@@ -324,22 +305,24 @@ button:hover {
 
     function performSearch() {
       if (!searchInput || !searchInput.value) {
-        showToast('Please enter a Kural number');
+        showToast('குறள் எண்ணை உள்ளிடவும்');
         return;
       }
       const val = parseInt(searchInput.value, 10);
       if (!val || val < 1 || val > 1330) {
-        showToast('Kural not found');
+        showToast('செல்லுபடியாகாத குறள் எண்');
         return;
       }
       if (!highlightKural(val)) {
-        showToast('Kural not found');
+        showToast('குறள் கிடைக்கவில்லை');
       }
     }
 
-    searchBtn.addEventListener('click', performSearch);
+    searchExecute.addEventListener('click', performSearch);
     if (searchInput) {
-      searchInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') performSearch(); });
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') performSearch();
+      });
     }
   </script>
 </body>
