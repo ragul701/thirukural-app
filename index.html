@@ -120,8 +120,9 @@ button:hover {
   /* Header styling */
   .app-header {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 12px;
     padding: 16px;
     background: rgba(10, 15, 28, 0.8);
@@ -137,8 +138,10 @@ button:hover {
   .search-wrapper {
     position: relative;
     width: 100%;
-    max-width: 360px;
+    max-width: 200px;
+    margin-right: 12px;
   }
+
   .search-wrapper input {
     width: 100%;
     padding: 10px 40px 10px 14px;
@@ -148,44 +151,16 @@ button:hover {
     color: #fff;
     font-size: 16px;
   }
+
   .search-wrapper input::placeholder {
     color: rgba(255, 255, 255, 0.6);
   }
+
   .search-wrapper button {
     position: absolute;
     right: 4px;
     top: 50%;
     transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    color: #ffd56b;
-  }
-    .header-actions {
-      display: flex;
-      gap: 12px;
-      margin-top: 8px;
-    }
-    .header-actions button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 20px;
-      color: #ffd56b;
-      padding: 4px;
-    }
-    .header-actions button:hover {
-      transform: translateY(-2px);
-    }
-    .header-actions button:focus {
-      outline: 2px solid #ffd56b;
-    }
-  .toast {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.75);
     color: #fff;
     padding: 8px 16px;
@@ -209,17 +184,74 @@ button:hover {
 
 <body>
   <header class="app-header">
-    <h1 class="app-title">Thiruvalluvar App</h1>
-    <div class="search-wrapper">
-      <input type="number" id="searchInput" placeholder="Search Kural Number (1 - 1330)" min="1" max="1330" />
-      <button id="searchBtn" aria-label="Search"><span class="search-icon">🔍</span></button>
-    </div>
+  <h1 class="app-title">Thiruvalluvar App</h1>
+  <!-- Search input -->
+  <div class="search-wrapper">
+    <input id="searchInput" type="number" min="1" max="1330" placeholder="குறள் எண் (1‑1330)" />
+    <button id="searchExecute" aria-label="Search"><span class="icon">🔍</span></button>
+  </div>
+  <div class="header-right">
     <div class="header-actions">
-      <button id="likeBtn" aria-label="Like"><span class="icon">❤️</span></button>
       <button id="profileBtn" aria-label="Profile"><span class="icon">👤</span></button>
-      <button id="favBtn" aria-label="Favourite"><span class="icon">⭐</span></button>
+      <button id="favBtn" aria-label="Favourite"><span class="icon">❤️</span></button>
+      <button id="settingsBtn" aria-label="Settings"><span class="icon">⚙️</span></button>
     </div>
-  </header>
+  </div>
+</header>
+<!-- Settings Modal -->
+<div id="settingsModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" id="closeSettings">&times;</span>
+    <h2>Profile Settings</h2>
+    <form id="settingsForm">
+      <label for="fullName">🧑‍💼 முழுப் பெயர்</label>
+      <input type="text" id="fullName" required />
+      <label for="email">📧 Email (Optional)</label>
+      <input type="email" id="email" placeholder="example@mail.com" />
+      <label for="bio">📝 Bio (Optional)</label>
+      <textarea id="bio" rows="3"></textarea>
+      <button type="submit">⚙️ சேமிக்கவும்</button>
+    </form>
+  </div>
+</div>
+<script>
+  // Settings modal logic
+  const settingsModal = document.getElementById('settingsModal');
+  const settingsBtn = document.getElementById('settingsBtn');
+  const closeSettings = document.getElementById('closeSettings');
+  const settingsForm = document.getElementById('settingsForm');
+  settingsBtn.addEventListener('click', () => settingsModal.style.display = 'block');
+  closeSettings.addEventListener('click', () => settingsModal.style.display = 'none');
+  window.addEventListener('click', (e) => { if (e.target === settingsModal) settingsModal.style.display = 'none'; });
+  // Load existing user details into form
+  const stored = JSON.parse(localStorage.getItem('userDetails') || '{}');
+  if (stored.fullName) document.getElementById('fullName').value = stored.fullName;
+  if (stored.email) document.getElementById('email').value = stored.email;
+  if (stored.bio) document.getElementById('bio').value = stored.bio;
+  settingsForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = {
+      fullName: document.getElementById('fullName').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      bio: document.getElementById('bio').value.trim()
+    };
+    const existing = JSON.parse(localStorage.getItem('userDetails') || '{}');
+    const merged = { ...existing, ...data };
+    localStorage.setItem('userDetails', JSON.stringify(merged));
+    alert('Profile updated!');
+    settingsModal.style.display = 'none';
+  });
+  // Favourite button logic (prompt for kural number)
+  const favBtn = document.getElementById('favBtn');
+  favBtn.addEventListener('click', () => {
+    const k = prompt('விருப்ப குறளை சேர்க்க குறள் எண்ணை (1-1330) உள்ளிடவும்:');
+    const num = parseInt(k, 10);
+    if (!num || num < 1 || num > 1330) { alert('செல்லுபடியாகாத எண்ணு'); return; }
+    const list = JSON.parse(localStorage.getItem('favouriteKurals') || '[]');
+    if (!list.includes(num)) { list.push(num); localStorage.setItem('favouriteKurals', JSON.stringify(list)); alert('விருப்ப குறள் சேர்ப்பட்டது!'); }
+    else { alert('ஏற்கனவே சேர்க்கப்பட்டுள்ளது'); }
+  });
+</script>
 
 <div class="bg" aria-hidden="true">
   <img
@@ -245,18 +277,35 @@ button:hover {
 <script src="nav.js"></script>
   <div id="toast" class="toast"></div>
   <script>
-    // Header button handlers (placeholder)
-    const likeBtn = document.getElementById('likeBtn');
     const profileBtn = document.getElementById('profileBtn');
     const favBtn = document.getElementById('favBtn');
 
-    likeBtn.addEventListener('click', () => alert('Liked!'));
-    profileBtn.addEventListener('click', () => alert('Profile clicked!'));
-    favBtn.addEventListener('click', () => alert('Added to favourites!'));
-    
-    const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
     const toast = document.getElementById('toast');
+
+    // Search button now reads from the input field
+    const searchExecute = document.getElementById('searchExecute');
+    const searchInput = document.getElementById('searchInput');
+    function performSearchFromInput() {
+      if (!searchInput || !searchInput.value) {
+        showToast('குறள் எண்ணை உள்ளிடவும்');
+        return;
+      }
+      const val = parseInt(searchInput.value, 10);
+      if (!val || val < 1 || val > 1330) {
+        showToast('செல்லுபடியாகாத குறள் எண்');
+        return;
+      }
+      if (!highlightKural(val)) {
+        showToast('குறள் கிடைக்கவில்லை');
+      }
+    }
+    searchExecute.addEventListener('click', performSearchFromInput);
+    // Also allow Enter key on the input
+    if (searchInput) {
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') performSearchFromInput();
+      });
+    }
 
     function showToast(msg) {
       toast.textContent = msg;
@@ -274,6 +323,10 @@ button:hover {
     }
 
     function performSearch() {
+      if (!searchInput || !searchInput.value) {
+        showToast('Please enter a Kural number');
+        return;
+      }
       const val = parseInt(searchInput.value, 10);
       if (!val || val < 1 || val > 1330) {
         showToast('Kural not found');
@@ -285,7 +338,9 @@ button:hover {
     }
 
     searchBtn.addEventListener('click', performSearch);
-    searchInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') performSearch(); });
+    if (searchInput) {
+      searchInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') performSearch(); });
+    }
   </script>
 </body>
 </html>
